@@ -50,7 +50,6 @@ class MuseumsList extends Component {
     }
 
     let newMuseums = currentMuseums.map((museum, index) => {
-      console.log(museum.photo);
       return (
         <Museum
           key={index}

@@ -1,7 +1,8 @@
 require 'rails_helper'
+
 feature 'Museum\'s Reviews Create' do
-  let!(:user) { FactoryGirl.create(:user, email: 'firefly@aol.com') }
-  let!(:museum) { FactoryGirl.create(:museum, name: "Please") }
+  let!(:user) { FactoryGirl.create(:user) }
+  let!(:museum) { FactoryGirl.create(:museum) }
 
   scenario 'User creates a review' do
     sign_in_as(user)
@@ -20,6 +21,7 @@ feature 'Museum\'s Reviews Create' do
     visit museum_path(museum)
     fill_in 'Rating', with: ''
     fill_in 'Your Review', with: ''
+    
     click_button 'Create Review'
 
     expect(page).to have_content('Rating can\'t be blank')

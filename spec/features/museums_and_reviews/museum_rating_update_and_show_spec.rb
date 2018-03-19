@@ -1,9 +1,10 @@
 require 'rails_helper'
-xfeature 'user update a musem\'s rating' do
-  let!(:museum) { FactoryGirl.create(:museum) }
-  let!(:user1) { FactoryGirl.create(:user) }
-  let!(:user2) { FactoryGirl.create(:user, email: 'email@email.com') }
-  let!(:review) { FactoryGirl.create(:review, museum: museum, user: user1) }
+
+feature 'user update a musem\'s rating' do
+  let!(:review) { FactoryGirl.create(:review) }
+  let!(:museum) { review.museum }
+  let!(:user1) { review.user }
+  let!(:user2) { FactoryGirl.create(:user) }
 
   scenario 'User posts a new review which changes the rating' do
     sign_in_as(user2)

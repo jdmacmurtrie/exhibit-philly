@@ -2,9 +2,9 @@ require 'rails_helper'
 
 feature 'Admin access admin functions' do
   let!(:admin) { FactoryGirl.create(:user, admin: true) }
-  let!(:user1) { FactoryGirl.create(:user, email: 'mugmug@phone.table') }
-  let!(:user2) { FactoryGirl.create(:user, email: 'this_is@my.email') }
-  let!(:user3) { FactoryGirl.create(:user, email: 'email.email@email.email') }
+  let!(:user1) { FactoryGirl.create(:user) }
+  let!(:user2) { FactoryGirl.create(:user) }
+  let!(:user3) { FactoryGirl.create(:user) }
 
   scenario 'Admin sees users link' do
     sign_in_as(admin)
@@ -28,6 +28,7 @@ feature 'Admin access admin functions' do
   scenario 'Non-admin does not see users link' do
     sign_in_as(user1)
     visit user_path(user1)
+    
     expect(page).to_not have_content 'Admin Features'
     expect(page).to_not have_link 'See All Users'
   end
